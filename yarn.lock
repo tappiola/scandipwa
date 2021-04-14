@@ -2384,6 +2384,9 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@scandipwa/adyen-graphql@file:packages/scandipwa/packages/adyen-graphql":
+  version "1.0.0"
+
 "@scandipwa/craco@0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@scandipwa/craco/-/craco-0.0.4.tgz#78e0c2e1cb9b640290327041780f554c9c2ecb5a"
