@@ -32,7 +32,8 @@
         "react-zoom-pan-pinch": "^1.6.1",
         "rebem-classname": "^0.4.0",
         "redux": "^4.0.5",
-        "unstated": "^2.1.1"
+        "unstated": "^2.1.1",
+        "makecommerce-ecommerce": "file:packages/makecommerce-ecommerce"
     },
     "scandipwa": {
         "themeAlias": "Source",
@@ -44,7 +45,8 @@
             "@scandipwa/m2-theme": true,
             "@scandipwa/webpack-i18n-runtime": true,
             "@scandipwa/service-worker": true,
-            "@scandipwa/adyen-graphql": true
+            "@scandipwa/adyen-graphql": true,
+            "makecommerce-ecommerce": true
         },
         "composer": {
             "magento/framework": "*",

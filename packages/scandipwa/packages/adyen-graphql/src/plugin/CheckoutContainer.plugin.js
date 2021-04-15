@@ -12,7 +12,7 @@
 import { CART_TAB } from 'Component/NavigationTabs/NavigationTabs.config';
 import CheckoutQuery from 'Query/Checkout.query';
 import { DETAILS_STEP, PAYMENT_TOTALS } from 'Route/Checkout/Checkout.config';
-import { GUEST_QUOTE_ID } from 'Util/Cart';
+import { getGuestQuoteId, GUEST_QUOTE_ID } from 'Util/Cart';
 import { isSignedIn } from 'Util/Auth';
 import BrowserDatabase from 'Util/BrowserDatabase';
 import { fetchMutation } from 'Util/Request';
@@ -37,7 +37,7 @@ export class CheckoutContainerPlugin {
     // eslint-disable-next-line no-unused-vars
     aroundSavePaymentMethodAndPlaceOrder = async (args, callback = () => {}, instance) => {
         const { paymentMethod: { code, additional_data } } = args[0];
-        const guest_cart_id = !isSignedIn() ? instance._getGuestCartId() : '';
+        const guest_cart_id = !isSignedIn() ? getGuestQuoteId() : '';
 
         try {
             await fetchMutation(CheckoutQuery.getSetPaymentMethodOnCartMutation({

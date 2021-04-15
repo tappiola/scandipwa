@@ -52,7 +52,7 @@ export class CheckoutPayment extends PureComponent {
                   onClick={ this.onClick }
                   type="button"
                 >
-                    { title }
+                    { title || 'THIS IS MAKE COMMERCE, BUT TITLE MISSING IN RESPONSE' }
                 </button>
             </li>
         );
