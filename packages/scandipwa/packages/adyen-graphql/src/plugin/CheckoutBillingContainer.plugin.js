@@ -40,7 +40,7 @@ export class CheckoutBillingContainerPlugin {
                 screenHeight: screen_height,
                 timeZoneOffset: timezone_offset,
                 language
-            }] = asyncData || args[0];
+            }] = asyncData || args[1];
 
             return {
                 code,

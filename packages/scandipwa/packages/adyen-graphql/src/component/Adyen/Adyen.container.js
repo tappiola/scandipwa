@@ -63,6 +63,7 @@ export class AdyenContainer extends PureComponent {
     }
 
     setPaymentMethodData(data) {
+        console.log('setPaymentData', data);
         const { setPaymentMethodData } = this.props;
 
         this.setState(
@@ -75,6 +76,7 @@ export class AdyenContainer extends PureComponent {
     }
 
     handleChange(state) {
+        console.log('state', state);
         const {
             data: {
                 storePaymentMethod,
