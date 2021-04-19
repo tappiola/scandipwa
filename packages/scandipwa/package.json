@@ -33,7 +33,7 @@
         "rebem-classname": "^0.4.0",
         "redux": "^4.0.5",
         "unstated": "^2.1.1",
-        "makecommerce-ecommerce": "file:packages/makecommerce-ecommerce"
+        "makecommerce": "file:packages/makecommerce"
     },
     "scandipwa": {
         "themeAlias": "Source",
@@ -45,8 +45,8 @@
             "@scandipwa/m2-theme": true,
             "@scandipwa/webpack-i18n-runtime": true,
             "@scandipwa/service-worker": true,
-            "@scandipwa/adyen-graphql": true,
-            "makecommerce-ecommerce": true
+            "@scandipwa/adyen-graphql": false,
+            "makecommerce": true
         },
         "composer": {
             "magento/framework": "*",

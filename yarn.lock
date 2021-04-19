@@ -9630,7 +9630,7 @@ make-fetch-happen@^5.0.0:
     socks-proxy-agent "^4.0.0"
     ssri "^6.0.0"
 
-"makecommerce-ecommerce@file:packages/scandipwa/packages/makecommerce-ecommerce":
+"makecommerce@file:packages/scandipwa/packages/makecommerce":
   version "0.0.0"
 
 makeerror@1.0.x:
