@@ -9,4 +9,5 @@
  * @link https://github.com/scandipwa/base-theme
  */
 
-export { default } from './MakeCommerce.component';
+export { default } from './MakeCommerce.container';
+export * from './MakeCommerce.component';

@@ -58,6 +58,8 @@ export class CheckoutContainerPlugin {
         }
 
         if (isSuccess) {
+            const { createGuestEmptyCart } = instance.props;
+            createGuestEmptyCart();
             instance.setDetailsStep(orderId);
         }
     }

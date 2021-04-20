@@ -18,14 +18,26 @@ export const MAKECOMMERCE = 'makecommerce';
 export class CheckoutPaymentsContainerPlugin {
     state = {
         paymentMethodConfig: {},
+        paymentBrand: null,
         isMkLoaded: false
+    };
+
+    // eslint-disable-next-line no-unused-vars
+    aroundCollectAdditionalData = (args, callback = () => {}, instance) => {
+        const { selectedPaymentCode } = instance.state;
+        const additionalDataGetter = instance.dataMap[selectedPaymentCode];
+
+        if (!additionalDataGetter) {
+            return {};
+        }
+
+        return additionalDataGetter(instance);
     };
 
     aroundComponentDidMount = (args, callback = () => {}, instance) => {
         this.initializeMk().then(
             /** @namespace ScandiPWA/MakeCommerce/Plugin/Plugin/initializeMkThen */
             (result) => {
-                console.log(result);
                 this.setPaymentMethodConfig(result, instance);
                 instance.setState({ isMkLoaded: true });
             }
@@ -34,16 +46,20 @@ export class CheckoutPaymentsContainerPlugin {
         callback.apply(instance, args);
     };
 
+    aroundDataMap = (originalMember) => ({
+        ...originalMember,
+        [MAKECOMMERCE]: this.getMkData.bind(this)
+    });
+
+    getMkData(instance) {
+        const { paymentBrand } = instance.state;
+        return { asyncData: paymentBrand };
+    }
+
     containerFunctions = (originalMember, instance) => ({
         ...originalMember,
-        setPaymentMethodData(data) {
-            const { selectedPaymentCode } = instance.state;
-            instance.setState(({ paymentMethodData }) => ({
-                paymentMethodData: {
-                    ...paymentMethodData,
-                    [selectedPaymentCode]: data
-                }
-            }));
+        setPaymentMethodBrand(paymentBrand) {
+            instance.setState({ paymentBrand });
         }
     });
 
@@ -62,17 +78,21 @@ export class CheckoutPaymentsContainerPlugin {
 }
 
 const {
+    aroundCollectAdditionalData,
     aroundComponentDidMount,
-    containerFunctions
+    containerFunctions,
+    aroundDataMap
 } = new CheckoutPaymentsContainerPlugin();
 
 export const config = {
     'Component/CheckoutPayments/Container': {
-            'member-property': {
-                containerFunctions
-            },
+        'member-property': {
+            dataMap: aroundDataMap,
+            containerFunctions
+        },
             'member-function': {
-                componentDidMount: aroundComponentDidMount
+                componentDidMount: aroundComponentDidMount,
+                collectAdditionalData: aroundCollectAdditionalData
             }
         }
 }

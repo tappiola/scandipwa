@@ -19,10 +19,13 @@ export class CheckoutPaymentsPlugin {
     });
 
     renderMakeCommerce(props) {
-        const { paymentMethodConfig } = props;
+        const { paymentMethodConfig, setPaymentMethodBrand } = props;
 
         return (
-            <MakeCommerce paymentMethodConfig={paymentMethodConfig}/>
+            <MakeCommerce
+                paymentMethodConfig={paymentMethodConfig}
+                setPaymentMethodBrand={ setPaymentMethodBrand }
+            />
         );
     }
 
