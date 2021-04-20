@@ -12,7 +12,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
-import Image from 'Component/Image/Image.container';
 import './MakeCommerce.style.scss';
 
 /** @namespace AdyenGraphql/Component/Adyen/Component/MakeCommerceComponent */
@@ -30,8 +29,9 @@ export class MakeCommerceComponent extends PureComponent {
     }
 
     renderCardsGroup = (title, data) => {
+        console.log(data);
         return <>
-            {data && <h4>{title}</h4>}
+            {data.length > 0 && <h4>{title}</h4>}
             <div mix={ { block: 'Checkout', elem: 'CardIcons' } }>
                 {data.map(card => this.renderIcon(card))}
             </div>
