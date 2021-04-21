@@ -12,26 +12,30 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
-import Image from 'Component/Image/Image.container';
 import './MakeCommerce.style.scss';
 
 /** @namespace AdyenGraphql/Component/Adyen/Component/MakeCommerceComponent */
 export class MakeCommerceComponent extends PureComponent {
     static propTypes = {
+        onPaymentBrandSelect: PropTypes.func.isRequired
     };
 
     renderIcon = (data) => {
+        const { onPaymentBrandSelect } = this.props;
+        const {name, logo_url} = data;
+
         return <img
-            key={data.name}
-            src={ data.logo_url }
+            key={name}
+            src={ logo_url }
             block="Checkout"
             elem="CardIcon"
+            onClick={(e) => onPaymentBrandSelect(e, name)}
         />
     }
 
     renderCardsGroup = (title, data) => {
         return <>
-            {data && <h4>{title}</h4>}
+            {data.length > 0 && <h4>{title}</h4>}
             <div mix={ { block: 'Checkout', elem: 'CardIcons' } }>
                 {data.map(card => this.renderIcon(card))}
             </div>
