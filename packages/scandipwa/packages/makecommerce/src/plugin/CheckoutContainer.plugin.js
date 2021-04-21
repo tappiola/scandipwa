@@ -20,6 +20,8 @@ import { fetchMutation } from 'Util/Request';
 
 import { MAKECOMMERCE } from './CheckoutPaymentsContainer.plugin';
 
+export const EMAIL = 'email';
+
 export class CheckoutContainerPlugin {
     // eslint-disable-next-line no-unused-vars
     aroundConstruct(args, callback = () => {}, instance) {
@@ -51,8 +53,8 @@ export class CheckoutContainerPlugin {
             checkoutStep: isSuccess ? DETAILS_STEP : defaultStep,
             orderID: orderId || '',
             paymentTotals: isSuccess ? {} : BrowserDatabase.getItem(PAYMENT_TOTALS) || {},
-            email: '',
-            isGuestEmailSaved: false,
+            email: isSuccess ? BrowserDatabase.getItem(EMAIL) : '',
+            isGuestEmailSaved: isSuccess,
             isCreateUser: false,
             estimateAddress: {}
         };
@@ -68,6 +70,7 @@ export class CheckoutContainerPlugin {
         }
     }
 
+    // eslint-disable-next-line no-unused-vars
     aroundSavePaymentMethodAndPlaceOrder = async (args, callback = () => {}, instance) => {
         const { paymentMethod: { code, additional_data, purchase_order_number } } = args[0];
         const guest_cart_id = !isSignedIn() ? getGuestQuoteId() : '';
@@ -86,6 +89,8 @@ export class CheckoutContainerPlugin {
             const { placeOrder: { order: { order_id, payment_gateway_url: paymentGatewayUrl } } } = orderData;
 
             if (code === MAKECOMMERCE && paymentGatewayUrl) {
+                const { email } = instance.state;
+                BrowserDatabase.setItem(email, EMAIL);
                 window.location.assign(paymentGatewayUrl);
             } else {
                 instance.setDetailsStep(order_id);

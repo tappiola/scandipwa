@@ -9,15 +9,11 @@
  * @link https://github.com/scandipwa/base-theme
  */
 
-import CartDispatcher from 'Store/Cart/Cart.dispatcher';
 import { showNotification } from 'Store/Notification/Notification.action';
-import BrowserDatabase from 'Util/BrowserDatabase';
 
-import AdyenQuery from '../../query/Adyen.query';
 import { updateMkState, updateMkStatus } from './MakeCommerce.action';
 
 export const PAYMENT_TOTALS = 'PAYMENT_TOTALS';
-export const STRIPE_AUTH_REQUIRED = 'Authentication Required: ';
 
 /** @namespace Makecommerce/Store/MakeCommerce/Dispatcher/MakeCommerceDispatcher */
 export class MakeCommerceDispatcher {
@@ -32,7 +28,7 @@ export class MakeCommerceDispatcher {
         dispatch(showNotification('error', debugMessage || message));
     }
 
-    updateAdyenState(dispatch, payload) {
+    updateMkState(dispatch, payload) {
         dispatch(updateMkState(payload));
     }
 }

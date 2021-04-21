@@ -9,25 +9,25 @@
  * @link https://github.com/scandipwa/base-theme
  */
 
-export const UPDATE_ADYEN_STATE = 'UPDATE_ADYEN_STATE';
-export const UPDATE_ADYEN_STATUS = 'UPDATE_ADYEN_STATUS';
+export const UPDATE_MK_STATE = 'UPDATE_MK_STATE';
+export const UPDATE_MK_STATUS = 'UPDATE_MK_STATUS';
 
 /**
- * Update adyen state
+ * Update Makecommerce state
  * @param {Object} state
- * @namespace Makecommerce/Store/MakeCommerce/Action/updateAdyenState
+ * @namespace Makecommerce/Store/MakeCommerce/Action/updateMkState
  */
-export const updateAdyenState = (state) => ({
-    type: UPDATE_ADYEN_STATE,
+export const updateMkState = (state) => ({
+    type: UPDATE_MK_STATE,
     state
 });
 
 /**
- * Update adyen loading status
+ * Update MakeCommerce loading status
  * @param {Object} status
- * @namespace Makecommerce/Store/MakeCommerce/Action/updateAdyenStatus
+ * @namespace Makecommerce/Store/MakeCommerce/Action/updateMkStatus
  */
-export const updateAdyenStatus = (status) => ({
-    type: UPDATE_ADYEN_STATUS,
+export const updateMkStatus = (status) => ({
+    type: UPDATE_MK_STATUS,
     status
 });
