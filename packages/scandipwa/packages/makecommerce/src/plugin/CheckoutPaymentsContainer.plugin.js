@@ -58,6 +58,7 @@ export class CheckoutPaymentsContainerPlugin {
 
     containerFunctions = (originalMember, instance) => ({
         ...originalMember,
+        ...this.state,
         setPaymentMethodBrand(paymentBrand) {
             instance.setState({ paymentBrand });
         }

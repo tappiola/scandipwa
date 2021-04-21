@@ -27,10 +27,6 @@ export class MakeCommerceContainer extends PureComponent {
         setPaymentMethodBrand: PropTypes.func.isRequired
     };
 
-    state = {
-        selectedBrand: null
-    };
-
     containerFunctions = {
         onPaymentBrandSelect: this.onPaymentBrandSelect.bind(this)
     }
@@ -38,7 +34,6 @@ export class MakeCommerceContainer extends PureComponent {
     onPaymentBrandSelect(e, selectedBrand) {
         const { setPaymentMethodBrand } = this.props;
 
-        this.setState({selectedBrand});
         setPaymentMethodBrand(selectedBrand);
     }
 

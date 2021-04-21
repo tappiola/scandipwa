@@ -21,7 +21,7 @@ export class MakeCommerceComponent extends PureComponent {
     };
 
     renderIcon = (data) => {
-        const { onPaymentBrandSelect } = this.props;
+        const { onPaymentBrandSelect, paymentBrand } = this.props;
         const {name, logo_url} = data;
 
         return <img
@@ -29,6 +29,7 @@ export class MakeCommerceComponent extends PureComponent {
             src={ logo_url }
             block="Checkout"
             elem="CardIcon"
+            mods={{isSelected: name === paymentBrand}}
             onClick={(e) => onPaymentBrandSelect(e, name)}
         />
     }

@@ -19,11 +19,13 @@ export class CheckoutPaymentsPlugin {
     });
 
     renderMakeCommerce(props) {
-        const { paymentMethodConfig, setPaymentMethodBrand } = props;
+        const { paymentMethodConfig, setPaymentMethodBrand, setOrderButtonEnableStatus, paymentBrand } = props;
+        setOrderButtonEnableStatus(!!paymentBrand);
 
         return (
             <MakeCommerce
                 paymentMethodConfig={paymentMethodConfig}
+                paymentBrand={paymentBrand}
                 setPaymentMethodBrand={ setPaymentMethodBrand }
             />
         );

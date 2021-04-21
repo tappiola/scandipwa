@@ -12,9 +12,7 @@
 .Checkout {
 
     &-MakeCommerce {
-
         margin-top: 10px;
-
     }
 
     &-CardIcons {
@@ -23,4 +21,13 @@
         grid-gap: 10px;
         margin: 10px 0;
     }
+
+    &-CardIcon {
+
+        &_isSelected {
+            outline: #708fa4 3px solid;
+        }
+
+    }
 }
+
