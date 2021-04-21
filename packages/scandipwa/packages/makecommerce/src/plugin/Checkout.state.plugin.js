@@ -18,7 +18,9 @@ export class CheckoutState {
         return {
             ...callback.apply(instance, args),
             createGuestEmptyCart: () => CartDispatcher.then(
-                ({ default: dispatcher }) => {dispatcher.createGuestEmptyCart(dispatch)}
+                ({ default: dispatcher }) => {
+                    dispatcher.createGuestEmptyCart(dispatch);
+                }
             )
         };
     };

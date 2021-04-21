@@ -21,6 +21,7 @@ import { fetchMutation } from 'Util/Request';
 import { MAKECOMMERCE } from './CheckoutPaymentsContainer.plugin';
 
 export class CheckoutContainerPlugin {
+    // eslint-disable-next-line no-unused-vars
     aroundConstruct(args, callback = () => {}, instance) {
         const {
             toggleBreadcrumbs,
@@ -38,6 +39,7 @@ export class CheckoutContainerPlugin {
         const isSuccess = !!(step === 'success' && orderId);
         const defaultStep = is_virtual ? BILLING_STEP : SHIPPING_STEP;
 
+        // eslint-disable-next-line no-param-reassign
         instance.state = {
             isLoading: is_virtual,
             isDeliveryOptionsLoading: false,

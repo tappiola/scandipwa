@@ -16,7 +16,7 @@ export class CheckoutQueryPlugin {
      * Get blog posts per page into config query
      * @returns [Field]
      */
-    _aroundGetOrderField = (args, callback, instance) => new Field('order')
+    _aroundGetOrderField = () => new Field('order')
         .addFieldList([
             'id',
             'order_id',

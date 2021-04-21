@@ -10,6 +10,7 @@
  */
 
 import { MAKECOMMERCE } from 'makecommerce/src/plugin/CheckoutPaymentsContainer.plugin';
+
 import MakeCommerce from '../component/MakeCommerce';
 
 export class CheckoutPaymentsPlugin {
@@ -19,14 +20,17 @@ export class CheckoutPaymentsPlugin {
     });
 
     renderMakeCommerce(props) {
-        const { paymentMethodConfig, setPaymentMethodBrand, setOrderButtonEnableStatus, paymentBrand } = props;
+        const {
+            paymentMethodConfig, setPaymentMethodBrand, setOrderButtonEnableStatus, paymentBrand
+        } = props;
+
         setOrderButtonEnableStatus(!!paymentBrand);
 
         return (
             <MakeCommerce
-                paymentMethodConfig={paymentMethodConfig}
-                paymentBrand={paymentBrand}
-                setPaymentMethodBrand={ setPaymentMethodBrand }
+              paymentMethodConfig={ paymentMethodConfig }
+              paymentBrand={ paymentBrand }
+              setPaymentMethodBrand={ setPaymentMethodBrand }
             />
         );
     }

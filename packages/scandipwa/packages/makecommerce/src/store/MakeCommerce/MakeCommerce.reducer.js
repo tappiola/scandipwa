@@ -17,9 +17,10 @@ export const initialState = {
     paymentMethods: []
 };
 
+/** @namespace Makecommerce/Store/MakeCommerce/Reducer/MakeCommerceReducer */
 export const MakeCommerceReducer = (state = initialState, action) => {
     const {
-        state: newState,
+        state: newState
     } = action;
 
     switch (action.type) {

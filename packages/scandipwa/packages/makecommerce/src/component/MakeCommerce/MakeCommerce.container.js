@@ -10,18 +10,18 @@
  */
 
 import PropTypes from 'prop-types';
-import { createRef, PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import MakeCommerce from './MakeCommerce.component';
 
-/** @namespace AdyenGraphql/Component/Adyen/Container/mapStateToProps */
+/** @namespace Makecommerce/Component/MakeCommerce/Container/mapStateToProps */
 export const mapStateToProps = () => ({});
 
-/** @namespace AdyenGraphql/Component/Adyen/Container/mapDispatchToProps */
+/** @namespace Makecommerce/Component/MakeCommerce/Container/mapDispatchToProps */
 export const mapDispatchToProps = () => ({});
 
-/** @namespace AdyenGraphql/Component/Adyen/Container/AdyenContainer */
+/** @namespace Makecommerce/Component/MakeCommerce/Container/MakeCommerceContainer */
 export class MakeCommerceContainer extends PureComponent {
     static propTypes = {
         setPaymentMethodBrand: PropTypes.func.isRequired
@@ -29,7 +29,7 @@ export class MakeCommerceContainer extends PureComponent {
 
     containerFunctions = {
         onPaymentBrandSelect: this.onPaymentBrandSelect.bind(this)
-    }
+    };
 
     onPaymentBrandSelect(e, selectedBrand) {
         const { setPaymentMethodBrand } = this.props;
@@ -40,10 +40,11 @@ export class MakeCommerceContainer extends PureComponent {
     render() {
         return (
             <MakeCommerce
-                { ...this.props }
-                { ...this.state }
-                { ...this.containerFunctions }
+              { ...this.props }
+              { ...this.state }
+              { ...this.containerFunctions }
             />
+
         );
     }
 }

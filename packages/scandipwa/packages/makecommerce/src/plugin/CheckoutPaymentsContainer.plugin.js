@@ -18,7 +18,7 @@ export const MAKECOMMERCE = 'makecommerce';
 export class CheckoutPaymentsContainerPlugin {
     state = {
         paymentMethodConfig: {},
-        paymentBrand: null,
+        paymentBrand: '',
         isMkLoaded: false
     };
 
@@ -73,8 +73,8 @@ export class CheckoutPaymentsContainerPlugin {
             MakeCommerceQuery.getPaymentMethods()
         ];
 
-        const { getMkConfig: { payment_methods : paymentMethods }} = await fetchQuery(queries);
-        return paymentMethods ;
+        const { getMkConfig: { payment_methods: paymentMethods } } = await fetchQuery(queries);
+        return paymentMethods;
     };
 }
 
@@ -91,11 +91,11 @@ export const config = {
             dataMap: aroundDataMap,
             containerFunctions
         },
-            'member-function': {
-                componentDidMount: aroundComponentDidMount,
-                collectAdditionalData: aroundCollectAdditionalData
-            }
+        'member-function': {
+            componentDidMount: aroundComponentDidMount,
+            collectAdditionalData: aroundCollectAdditionalData
         }
-}
+    }
+};
 
 export default config;

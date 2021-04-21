@@ -9,30 +9,25 @@
  * @link https://github.com/scandipwa/base-theme
  */
 
-import { Field } from 'Util/Query';
 import CheckoutQuery from 'Query/Checkout.query';
 import BrowserDatabase from 'Util/BrowserDatabase/BrowserDatabase';
 import { GUEST_QUOTE_ID } from 'Util/Cart';
+import { Field } from 'Util/Query';
 
-/** @namespace AdyenGraphql/Query/Adyen/Query/MakeCommerceQuery */
+/** @namespace Makecommerce/Query/MakeCommerce/Query/MakeCommerceQuery */
 export class MakeCommerceQuery {
+    _getCards = () => new Field('cards').addFieldList(['name', 'logo_url', 'url']);
 
-    _getCards = () => {
-        return new Field('cards').addFieldList(['name', 'logo_url', 'url']);
-    }
-
-    _getBankLinks = () => {
-        return new Field('banklinks').addFieldList(
-            ['name', 'logo_url', 'url', 'country', 'countries']
-        );
-    }
+    _getBankLinks = () => new Field('banklinks').addFieldList(
+        ['name', 'logo_url', 'url', 'country', 'countries']
+    );
 
     _getPaymentMethods() {
         return new Field('payment_methods')
-            .addFieldList([this._getCards(), this._getBankLinks()])
+            .addFieldList([this._getCards(), this._getBankLinks()]);
     }
 
-    getPaymentMethods(){
+    getPaymentMethods() {
         const guestQuoteId = BrowserDatabase.getItem(GUEST_QUOTE_ID);
         const paymentMethods = new Field('getMkConfig').addField(this._getPaymentMethods());
         CheckoutQuery._addGuestCartId(guestQuoteId, paymentMethods);

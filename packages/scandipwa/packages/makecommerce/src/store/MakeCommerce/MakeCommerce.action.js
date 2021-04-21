@@ -15,8 +15,9 @@ export const UPDATE_ADYEN_STATUS = 'UPDATE_ADYEN_STATUS';
 /**
  * Update adyen state
  * @param {Object} state
+ * @namespace Makecommerce/Store/MakeCommerce/Action/updateAdyenState
  */
-export const updateAdyenState = state => ({
+export const updateAdyenState = (state) => ({
     type: UPDATE_ADYEN_STATE,
     state
 });
@@ -24,8 +25,9 @@ export const updateAdyenState = state => ({
 /**
  * Update adyen loading status
  * @param {Object} status
+ * @namespace Makecommerce/Store/MakeCommerce/Action/updateAdyenStatus
  */
-export const updateAdyenStatus = status => ({
+export const updateAdyenStatus = (status) => ({
     type: UPDATE_ADYEN_STATUS,
     status
 });
