@@ -24,9 +24,7 @@ export class CheckoutBillingContainerPlugin {
 
         switch (code) {
         case MAKECOMMERCE:
-            const [{
-                payment_type
-            }] = asyncData || args[0];
+            const [payment_type] = args[1];
 
             return {
                 code,
@@ -46,7 +44,7 @@ export class CheckoutBillingContainerPlugin {
             };
 
         case PURCHASE_ORDER:
-            const { purchaseOrderNumber } = fields;
+            const { purchaseOrderNumber } = args[0];
 
             return {
                 code,

@@ -10,16 +10,18 @@
  */
 
 import CheckoutQuery from 'Query/Checkout.query';
-import { getGuestQuoteId } from 'Util/Cart';
+import {
+    BILLING_STEP, DETAILS_STEP, PAYMENT_TOTALS, SHIPPING_STEP
+} from 'Route/Checkout/Checkout.config';
 import { isSignedIn } from 'Util/Auth';
-import { fetchMutation } from 'Util/Request';
-import { MAKECOMMERCE } from './CheckoutPaymentsContainer.plugin';
-import { BILLING_STEP, DETAILS_STEP, PAYMENT_TOTALS, SHIPPING_STEP } from 'Route/Checkout/Checkout.config';
 import BrowserDatabase from 'Util/BrowserDatabase/BrowserDatabase';
+import { getGuestQuoteId } from 'Util/Cart';
+import { fetchMutation } from 'Util/Request';
+
+import { MAKECOMMERCE } from './CheckoutPaymentsContainer.plugin';
 
 export class CheckoutContainerPlugin {
     aroundConstruct(args, callback = () => {}, instance) {
-
         const {
             toggleBreadcrumbs,
             totals: {
@@ -73,7 +75,7 @@ export class CheckoutContainerPlugin {
                 guest_cart_id,
                 payment_method: {
                     code,
-                    [code]: additional_data,
+                    [(code === MAKECOMMERCE ? 'additional_data' : code)]: additional_data,
                     purchase_order_number
                 }
             }));
@@ -81,7 +83,7 @@ export class CheckoutContainerPlugin {
             const orderData = await fetchMutation(CheckoutQuery.getPlaceOrderMutation(guest_cart_id));
             const { placeOrder: { order: { order_id, payment_gateway_url: paymentGatewayUrl } } } = orderData;
 
-            if (code === MAKECOMMERCE && paymentGatewayUrl){
+            if (code === MAKECOMMERCE && paymentGatewayUrl) {
                 window.location.assign(paymentGatewayUrl);
             } else {
                 instance.setDetailsStep(order_id);
@@ -89,7 +91,7 @@ export class CheckoutContainerPlugin {
         } catch (e) {
             instance._handleError(e);
         }
-    }
+    };
 }
 
 const {
