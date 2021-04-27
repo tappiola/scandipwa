@@ -309,7 +309,7 @@
     "Up to %s": "تا %s",
     "From %s": "از %s",
     "From %s, to %s": "از %s٬ تا %s",
-    "Reset": "تنظیم مجدد",
+    "Reset all": "تنظیم مجدد",
     "Old product price": "قیمت قبلی محصول",
     "Error initializing Klarna payment method.": "خطا در پردازش روش پرداخت کلارنا.",
     "Pay later": "بعدا پرداخت میکنم",
