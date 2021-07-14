@@ -14,7 +14,8 @@
     padding: 0;
     vertical-align: middle;
 
-    &:hover, :focus {
+    &:hover,
+    &:focus {
         --button-hover-padding: 0;
     }
 
