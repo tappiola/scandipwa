@@ -451,5 +451,8 @@
     "publishConfig": {
         "access": "public"
     },
-    "proxy": "https://40kskudemo.scandipwa.com/"
+    "proxy": "https://40kskudemo.scandipwa.com/",
+    "devDependencies": {
+        "cypress": "^8.0.0"
+    }
 }
