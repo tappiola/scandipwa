@@ -6,7 +6,8 @@
         "start": "scandipwa-scripts start",
         "start:magento": "BUILD_MODE=magento scandipwa-scripts start",
         "build": "scandipwa-scripts build",
-        "build:magento": "BUILD_MODE=magento scandipwa-scripts build"
+        "build:magento": "BUILD_MODE=magento scandipwa-scripts build",
+        "cypress": "cypress open"
     },
     "dependencies": {
         "@scandipwa/m2-theme": "0.2.0-next.265+ddc4f62b",

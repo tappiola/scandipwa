@@ -1,1 +1,4 @@
-{}
+{
+  "baseUrl": "http://scandipwapmrev.indvp.com/default",
+  "scrollBehavior": "center"
+}
