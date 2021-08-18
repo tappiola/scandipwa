@@ -9,6 +9,7 @@
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
+
 import Overlay from 'Component/Overlay/Overlay.container';
 import { SEARCH_TIMEOUT } from 'Component/SearchOverlay/SearchOverlay.config';
 

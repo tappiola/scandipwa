@@ -1,4 +1,5 @@
-import { render } from './SearchOverlay.plugin';
+import CloseIcon from 'Component/CloseIcon';
+import SearchIcon from 'Component/SearchIcon';
 
 /**
  * ScandiPWA - Progressive Web App for Magento
@@ -19,10 +20,45 @@ export const componentDidMount = (args, callback, instance) => {
     }
 };
 
+export const renderSearchIcon = (args, callback, instance) => {
+    const { searchCriteria } = instance.props;
+
+    if (searchCriteria) {
+        return (
+            <div
+              block="SearchField"
+              elem="CloseIcon"
+              role="button"
+              tabIndex="0"
+              onClick={ instance.closeSearch }
+              onKeyDown={ instance.closeSearch }
+              aria-label={ __('Close') }
+            >
+                <CloseIcon />
+            </div>
+        );
+    }
+
+    return (
+        <div
+          block="SearchField"
+          elem="SearchIcon"
+          role="button"
+          tabIndex="0"
+          onClick={ instance.openSearch }
+          onKeyDown={ instance.openSearch }
+          aria-label={ __('Search') }
+        >
+            <SearchIcon />
+        </div>
+    );
+};
+
 export default {
     'Component/SearchField/Component': {
         'member-function': {
-            componentDidMount
+            componentDidMount,
+            renderSearchIcon
         }
     }
 };

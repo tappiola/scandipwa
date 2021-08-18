@@ -1,5 +1,3 @@
-import { isCrawler, isSSR } from 'Util/Browser';
-
 /**
  * ScandiPWA - Progressive Web App for Magento
  *
@@ -10,6 +8,8 @@ import { isCrawler, isSSR } from 'Util/Browser';
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
+import { isCrawler, isSSR } from 'Util/Browser';
+
 import './CategoryPage.style.plugin.scss';
 
 export const renderMiscellaneous = (args, callback, instance) => {

@@ -8,6 +8,7 @@
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
+
 import { SideMenuReducer } from '../store/SideMenu/SideMenu.reducer';
 
 const getStaticReducers = (args, callback) => ({

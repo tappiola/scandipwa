@@ -1,9 +1,3 @@
-import { MENU, MY_ACCOUNT, SEARCH } from 'Component/Header/Header.config';
-import { ACCOUNT_LOGIN_URL } from 'Route/MyAccount/MyAccount.config';
-import { isSignedIn } from 'Util/Auth';
-import browserHistory from 'Util/History';
-import { appendWithStoreCode } from 'Util/Url';
-
 /**
  * ScandiPWA - Progressive Web App for Magento
  *
@@ -14,6 +8,12 @@ import { appendWithStoreCode } from 'Util/Url';
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
+
+import { MENU, MY_ACCOUNT, SEARCH } from 'Component/Header/Header.config';
+import { ACCOUNT_LOGIN_URL } from 'Route/MyAccount/MyAccount.config';
+import { isSignedIn } from 'Util/Auth';
+import browserHistory from 'Util/History';
+import { appendWithStoreCode } from 'Util/Url';
 
 export class HeaderContainerPlugin {
     state = (originalMember) => ({

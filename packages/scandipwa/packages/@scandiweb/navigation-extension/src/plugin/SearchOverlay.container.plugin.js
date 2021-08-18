@@ -8,6 +8,7 @@
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
+
 export const containerProps = (args, callback, instance) => {
     const { device } = instance.props;
 
