@@ -14,6 +14,11 @@ const SideMenuDispatcher = import(
     '../store/SideMenu/SideMenu.dispatcher'
 );
 
+export const SearchBarDispatcher = import(
+    /* webpackMode: "lazy", webpackChunkName: "dispatchers" */
+    'Store/SearchBar/SearchBar.dispatcher'
+);
+
 const mapDispatchToProps = (args, callback) => {
     const [dispatch] = args;
 
@@ -24,6 +29,12 @@ const mapDispatchToProps = (args, callback) => {
         ),
         closeSideMenu: () => SideMenuDispatcher.then(
             ({ default: dispatcher }) => dispatcher.closeSideMenu(dispatch)
+        ),
+        updateLoadStatus: (options) => SearchBarDispatcher.then(
+            ({ default: dispatcher }) => dispatcher.onError(options, dispatch)
+        ),
+        clearSearchResults: () => SearchBarDispatcher.then(
+            ({ default: dispatcher }) => dispatcher.clearSearchResults(dispatch)
         )
     };
 };

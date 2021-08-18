@@ -22,14 +22,15 @@ export class HeaderContainerPlugin {
     });
 
     containerProps = (args, callback, instance) => {
-        const { openSideMenu, closeSideMenu } = instance.props;
+        const { openSideMenu, closeSideMenu, clearSearchResults } = instance.props;
         const { isSearchBarActive } = instance.state;
 
         return {
             ...callback.apply(instance, args),
             openSideMenu,
             closeSideMenu,
-            isSearchBarActive
+            isSearchBarActive,
+            clearSearchResults
         };
     };
 
@@ -37,15 +38,57 @@ export class HeaderContainerPlugin {
         ...originalMember,
         onMobileMyAccountButtonClick: this.onMobileMyAccountButtonClick.bind(instance),
         onSearchButtonClick: this.onSearchButtonClick.bind(instance),
-        onSearchBarDeactivate: this.onSearchBarDeactivate.bind(instance)
+        onSearchBarDeactivate: this.onSearchBarDeactivate.bind(instance),
+        onSearchOutsideClick: this.onSearchOutsideClick.bind(instance)
     });
 
     onSearchButtonClick() {
+        const {
+            setNavigationState,
+            goToPreviousNavigationState,
+            showOverlay,
+            updateLoadStatus
+        } = this.props;
+
         this.setState({ isSearchBarActive: true });
+
+        updateLoadStatus(false);
+        showOverlay(SEARCH);
+
+        setNavigationState({
+            name: SEARCH,
+            onBackClick: () => {
+                showOverlay(MENU);
+                goToPreviousNavigationState();
+            }
+        });
+    }
+
+    onSearchOutsideClick() {
+        const {
+            goToPreviousNavigationState,
+            navigationState: { name },
+            device: { isMobile },
+            clearSearchResults,
+            updateLoadStatus
+        } = this.props;
+
+        if (name === SEARCH) {
+            if (isMobile) {
+                clearSearchResults();
+                this.onClearSearchButtonClick();
+                updateLoadStatus(false);
+                return;
+            }
+
+            this.hideSearchOverlay();
+            goToPreviousNavigationState();
+        }
     }
 
     onSearchBarDeactivate() {
         this.setState({ isSearchBarActive: false });
+        this.hideSearchOverlay();
     }
 
     onMobileMyAccountButtonClick() {
@@ -66,7 +109,10 @@ export class HeaderContainerPlugin {
             device
         } = instance.props;
 
-        if (!device.isMobile && name === SEARCH) {
+        if (
+            (!device.isMobile && name === SEARCH)
+            || (device.isMobile)
+        ) {
             return;
         }
 
