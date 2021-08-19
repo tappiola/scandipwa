@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * ScandiPWA - Progressive Web App for Magento
  *
@@ -17,8 +18,8 @@ import SearchIcon from 'Component/SearchIcon';
 import UserIcon from 'Component/UserIcon';
 import { isSignedIn } from 'Util/Auth';
 
-import './Header.style.plugin.scss';
-import './Footer.style.plugin.scss';
+import './Header.style.scss';
+import './Footer.style.scss';
 
 export const HamburgerMenu = lazy(() => import(
     /* webpackMode: "lazy", webpackChunkName: "navigation-extension" */

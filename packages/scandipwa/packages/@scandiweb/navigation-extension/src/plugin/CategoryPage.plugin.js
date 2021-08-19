@@ -10,10 +10,10 @@
  */
 import { isCrawler, isSSR } from 'Util/Browser';
 
-import './CategoryPage.style.plugin.scss';
+import './CategoryPage.style.scss';
 
 export const renderMiscellaneous = (args, callback, instance) => {
-    const { category: { name } = {}, device: { isMobile } } = instance.props;
+    const { category: { name } = {}, isMobile } = instance.props;
 
     if (!instance.displayProducts()) {
         return null;

@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 /**
  * ScandiPWA - Progressive Web App for Magento
  *
@@ -66,6 +65,18 @@ export const componentDidUpdate = (args, callback, instance) => {
         }, SEARCH_TIMEOUT);
     }
 };
+
+// export const renderSearchItem = (args, callback, instance) => {
+//     const [product, i] = args;
+//
+//     return (
+//         <SearchItem
+//           product={ product }
+//           key={ i }
+//           onSearchBarDeactivate={ () => console.debug('deactivate') }
+//         />
+//     );
+// };
 
 export default {
     'Component/SearchOverlay/Component': {

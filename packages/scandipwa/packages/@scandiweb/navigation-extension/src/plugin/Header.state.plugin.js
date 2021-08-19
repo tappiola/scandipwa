@@ -8,39 +8,17 @@
  * @package scandipwa/base-theme
  * @link https://github.com/scandipwa/base-theme
  */
-
-const SideMenuDispatcher = import(
-    /* webpackMode: "lazy", webpackChunkName: "dispatchers" */
-    '../store/SideMenu/SideMenu.dispatcher'
-);
-
-export const SearchBarDispatcher = import(
-    /* webpackMode: "lazy", webpackChunkName: "dispatchers" */
-    'Store/SearchBar/SearchBar.dispatcher'
-);
-
-const mapDispatchToProps = (args, callback) => {
-    const [dispatch] = args;
+const mapStateToProps = (args, callback) => {
+    const [state] = args;
 
     return {
         ...callback(...args),
-        openSideMenu: () => SideMenuDispatcher.then(
-            ({ default: dispatcher }) => dispatcher.openSideMenu(dispatch)
-        ),
-        closeSideMenu: () => SideMenuDispatcher.then(
-            ({ default: dispatcher }) => dispatcher.closeSideMenu(dispatch)
-        ),
-        updateLoadStatus: (options) => SearchBarDispatcher.then(
-            ({ default: dispatcher }) => dispatcher.onError(options, dispatch)
-        ),
-        clearSearchResults: () => SearchBarDispatcher.then(
-            ({ default: dispatcher }) => dispatcher.clearSearchResults(dispatch)
-        )
+        isSearchBarActive: state.MobileSearchBarReducer.isActive
     };
 };
 
 export default {
-    'Component/Header/Container/mapDispatchToProps': {
-        function: mapDispatchToProps
+    'Component/Header/Container/mapStateToProps': {
+        function: mapStateToProps
     }
 };

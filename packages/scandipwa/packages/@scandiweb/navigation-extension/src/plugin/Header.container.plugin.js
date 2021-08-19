@@ -15,15 +15,14 @@ import { isSignedIn } from 'Util/Auth';
 import browserHistory from 'Util/History';
 import { appendWithStoreCode } from 'Util/Url';
 
-export class HeaderContainerPlugin {
-    state = (originalMember) => ({
-        ...originalMember,
-        isSearchBarActive: false
-    });
-
+export class HeaderContainer {
     containerProps = (args, callback, instance) => {
-        const { openSideMenu, closeSideMenu, clearSearchResults } = instance.props;
-        const { isSearchBarActive } = instance.state;
+        const {
+            openSideMenu,
+            closeSideMenu,
+            clearSearchResults,
+            isSearchBarActive
+        } = instance.props;
 
         return {
             ...callback.apply(instance, args),
@@ -47,13 +46,13 @@ export class HeaderContainerPlugin {
             setNavigationState,
             goToPreviousNavigationState,
             showOverlay,
-            updateLoadStatus
+            updateLoadStatus,
+            activateSearchBar
         } = this.props;
-
-        this.setState({ isSearchBarActive: true });
 
         updateLoadStatus(false);
         showOverlay(SEARCH);
+        activateSearchBar();
 
         setNavigationState({
             name: SEARCH,
@@ -74,8 +73,9 @@ export class HeaderContainerPlugin {
         } = this.props;
 
         if (name === SEARCH) {
+            clearSearchResults();
+
             if (isMobile) {
-                clearSearchResults();
                 this.onClearSearchButtonClick();
                 updateLoadStatus(false);
                 return;
@@ -87,7 +87,9 @@ export class HeaderContainerPlugin {
     }
 
     onSearchBarDeactivate() {
-        this.setState({ isSearchBarActive: false });
+        const { deactivateSearchBar } = this.props;
+
+        deactivateSearchBar();
         this.hideSearchOverlay();
     }
 
@@ -133,7 +135,7 @@ const {
     containerProps,
     containerFunctions,
     onSearchBarFocus
-} = new HeaderContainerPlugin();
+} = new HeaderContainer();
 
 export default {
     'Component/Header/Container': {
