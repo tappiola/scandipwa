@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 /**
  * ScandiPWA - Progressive Web App for Magento
  *
@@ -24,6 +25,14 @@ export class CheckoutAddressForm extends MyAccountAddressForm {
     static defaultProps = {
         ...MyAccountAddressForm.defaultProps,
         onShippingEstimationFieldsChange: () => {}
+    };
+
+    state = {
+        country_id: '',
+        regionId: null,
+        region: '',
+        city: '',
+        postcode: ''
     };
 
     componentDidMount() {
@@ -54,10 +63,11 @@ export class CheckoutAddressForm extends MyAccountAddressForm {
 
         if (addressGroup) {
             addressGroup.events = {
-                // Updates shipping methods on address blurt
+                // Updates shipping methods on address blur
                 onBlur: this.onAddressChange,
                 // Updates shipping methods on start
-                onLoad: this.onAddressChange
+                onLoad: this.onAddressChange,
+                onChange: () => console.debug('onchange')
             };
         }
 
@@ -68,6 +78,8 @@ export class CheckoutAddressForm extends MyAccountAddressForm {
 
     onAddressChange = (event, data) => {
         const { fields = {} } = data;
+
+        console.debug(data);
         const {
             country_id,
             region_id: regionId,
@@ -75,6 +87,33 @@ export class CheckoutAddressForm extends MyAccountAddressForm {
             city,
             postcode
         } = transformToNameValuePair(fields);
+
+        const {
+            country_id: prevCountry,
+            regionId: prevRegionId,
+            region: prevRegion,
+            city: prevCity,
+            postcode: prevPostcode
+        } = this.state;
+
+        console.debug({ prevCountry, country_id });
+
+        // avoid sending requests to the server, if input values haven't changed
+        if (prevCountry === country_id
+            && prevRegionId === regionId
+            && prevRegion === region
+            && prevCity === city
+            && prevPostcode === postcode) {
+            return;
+        }
+
+        this.setState({
+            country_id,
+            regionId,
+            region,
+            city,
+            postcode
+        });
 
         const { onShippingEstimationFieldsChange } = this.props;
 
